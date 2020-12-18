@@ -12,7 +12,10 @@ import validate from '../validateInfo'
 import '../error1.css'
 
 const AddUser = () => {
-  const {handleChange,values,handleSubmit,errors}=useForm(validate)
+  const {handleChange,values,handleSubmit,errors,handleCheckboxChange}=useForm(validate)
+  const current = new Date().toISOString().split("T")[0]
+  console.log(current)
+ 
   return (
     <Form onSubmit={handleSubmit} >
       <FormGroup>
@@ -21,6 +24,7 @@ const AddUser = () => {
           value={values.fullname}
           onChange={handleChange}
           name='fullname' 
+          autoComplete='off'
         />
         {errors.fullname && <p className='error'>{errors.fullname}</p>}
         
@@ -30,8 +34,8 @@ const AddUser = () => {
         <Input type='date'
           placeholder='Enter BirthDate'
           value={values.birthdate} onChange={handleChange}
-          
           name='birthdate'
+          max={current}
         />
         {errors.birthdate && <p className='error'>{errors.birthdate}</p>}
       </FormGroup>
@@ -94,25 +98,25 @@ const AddUser = () => {
         {errors.gender && <p className='error'>{errors.gender}</p>}
       </FormGroup>
       
-      {/*<FormGroup>
+      <FormGroup>
         <Label>Select Your Hobbies</Label>
         <FormGroup>
-          <Input type="checkbox" name="travelling" value='travelling' id="exampleCheck" onChange={handleCheckboxChange} />
-          <Label for="exampleCheck">Travelling</Label>
+          <Input type="checkbox" name="travelling" value='travelling' id="travelling" onChange={handleCheckboxChange} />
+          <Label for="travelling">Travelling</Label>
         </FormGroup>
         <FormGroup>
-          <Input type="checkbox" name="reading" value='reading' id="exampleCheck" onChange={handleCheckboxChange} />
-          <Label for="exampleCheck">Reading</Label>
+          <Input type="checkbox" name="reading" value='reading' id="reading" onChange={handleCheckboxChange} />
+          <Label for="reading">Reading</Label>
         </FormGroup>
         <FormGroup>
-          <Input type="checkbox" name="gaming" value='gaming' id="exampleCheck" onChange={handleCheckboxChange} />
-          <Label for="exampleCheck">Gaming</Label>
+          <Input type="checkbox" name="gaming" value='gaming' id="gaming" onChange={handleCheckboxChange} />
+          <Label for="gaming">Gaming</Label>
         </FormGroup>
         {values.hobbies && values.hobbies.map((hobby, index) => {
         return <p key={index}>{hobby.name}</p>
       })}
-      </FormGroup>*/}
-      
+      </FormGroup>
+      {errors.hobbies && <p className='error'>{errors.hobbies}</p>}
       <Button type='submit'>Submit</Button>
     </Form>
   )

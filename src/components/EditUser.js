@@ -22,7 +22,7 @@ const EditUser = (props) => {
     college: [],
     hobbies: []
   })
-
+  const current = new Date().toISOString().split("T")[0]
   useEffect(()=>{
     const userid=currentUserId
     const selectedUser=users.find((user)=>user.id===userid)
@@ -41,15 +41,15 @@ const EditUser = (props) => {
   }
 
 
-  /*const handleCheckboxChange = event => {
-    let newArray = [...values.hobbies, event.target.id];
-    if (values.hobbies.includes(event.target.id)) {
+  const handleCheckboxChange = event => {
+    let newArray = [...selectedUserValue.hobbies, event.target.id];
+    if (selectedUserValue.hobbies.includes(event.target.id)) {
       newArray = newArray.filter(hobby => hobby !== event.target.id);
     }
-    setValues({
+    setSelectedUserValue({
       hobbies: newArray
     })
-  }*/
+  }
   return (
     <Form onSubmit={handleSubmit}>
       <FormGroup>
@@ -58,6 +58,7 @@ const EditUser = (props) => {
           value={selectedUserValue.fullname}
           onChange={handleChange}
           name='fullname'
+          autoComplete='off'
         />
       </FormGroup>
       <FormGroup>
@@ -66,6 +67,7 @@ const EditUser = (props) => {
           placeholder='Enter BirthDate'
           value={selectedUserValue.birthdate} onChange={handleChange}
           name='birthdate'
+          max={current}
         />
       </FormGroup>
       <FormGroup>
@@ -119,23 +121,23 @@ const EditUser = (props) => {
           </Label>
         </FormGroup>
       </FormGroup>
-      {/*<FormGroup>
+      <FormGroup>
         <FormGroup>
-          <Input type="checkbox" name="travelling" value='travelling' id="exampleCheck" onChange={handleCheckboxChange} />
-          <Label for="exampleCheck">Travelling</Label>
+          <Input type="checkbox" name="travelling" value='travelling' id="travelling" onChange={handleCheckboxChange} />
+          <Label for="travelling">Travelling</Label>
         </FormGroup>
         <FormGroup>
-          <Input type="checkbox" name="reading" value='reading' id="exampleCheck" onChange={handleCheckboxChange} />
-          <Label for="exampleCheck">Reading</Label>
+          <Input type="checkbox" name="reading" value='reading' id="reading" onChange={handleCheckboxChange} />
+          <Label for="reading">Reading</Label>
         </FormGroup>
         <FormGroup>
-          <Input type="checkbox" name="gaming" value='gaming' id="exampleCheck" onChange={handleCheckboxChange} />
-          <Label for="exampleCheck">Gaming</Label>
+          <Input type="checkbox" name="gaming" value='gaming' id="gaming" onChange={handleCheckboxChange} />
+          <Label for="gaming">Gaming</Label>
         </FormGroup>
       </FormGroup>
-      {values.hobbies && values.hobbies.map((hobby, index) => {
-        return <p key={index}>{hobby}</p>
-      })}*/}
+      {selectedUserValue.hobbies && selectedUserValue.hobbies.map((hobby, index) => {
+        return <p key={index}>{hobby.name}</p>
+      })}
       <Button type='submit'>Submit</Button>
     </Form>
   )

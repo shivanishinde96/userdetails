@@ -15,7 +15,7 @@ const initialState={
         }
     ]
 }
-console.log('collge',initialState.users.college)
+
 export const GlobalContext=createContext(initialState)
 
 //Provider Component

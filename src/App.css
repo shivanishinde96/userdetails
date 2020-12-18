@@ -1,4 +1,16 @@
-.App{
-  max-width: 35rem;
+/*.App{
+  max-width: 5rem;
   margin: 4rem auto;
+}*/
+
+.App{
+  padding:35px;
+}
+
+/*Media Queries*/
+@media screen and (max-width:600px){
+  .App{
+    max-width:25rem;
+    margin: 1rem auto;
+  }
 }

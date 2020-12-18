@@ -1,13 +1,13 @@
 const validateInfo=(values)=>{
     let errors={}
-    if(!values.fullname.trim()){
+    if(!values.fullname){
         errors.fullname='Fullname is required'
     }
     else if(!/^[a-zA-Z]{3,}$/.test(values.fullname)){
         errors.fullname='Minimum 3 characters are required'
     }
 
-    if(!values.address.trim()){
+    if(!values.address){
         errors.address='Address is required'
     }
 
@@ -24,6 +24,9 @@ const validateInfo=(values)=>{
     }
     if(!values.college){
         errors.college='Please select a college'
+    }
+    if(!values.hobbies){
+        errors.hobbies='Please select your hobbies'
     }
     return errors
 }

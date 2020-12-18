@@ -9,6 +9,7 @@ import {
 } from 'reactstrap'
 
 const Heading = () => {
+   
     return (
         <Navbar color='dark' dark>
             <Container>
